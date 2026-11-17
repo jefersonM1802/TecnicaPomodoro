@@ -22,4 +22,3 @@ public abstract class BaseDatos extends RoomDatabase {
        }
     }
 
-}
