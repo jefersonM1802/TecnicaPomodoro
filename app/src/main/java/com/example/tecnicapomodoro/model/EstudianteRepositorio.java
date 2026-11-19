@@ -1,27 +1,68 @@
 package com.example.tecnicapomodoro.model;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.database.sqlite.SQLiteConstraintException;
+import android.os.Handler;
+import android.os.Looper;
+
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class EstudianteRepositorio {
-    private final ArrayList<Estudiante> lista = new ArrayList<>();
 
-    public boolean existeCorreo(String correo) {
-        for (Estudiante estudiante : lista) {
-            if (estudiante.getCorreo().equalsIgnoreCase(correo)) {
-                return true;
+    public interface Resultado {
+        void onExito();
+        void onError(String mensaje);
+    }
+
+    public interface Listado {
+        void onListo(List<Estudiante> estudiantes);
+    }
+
+    public interface Sesion {
+        void onEncontrado(Estudiante estudiante);
+        void onNoEncontrado();
+    }
+
+    private final EstudianteDao dao;
+    private final ExecutorService hilo = Executors.newSingleThreadExecutor();
+    private final Handler principal = new Handler(Looper.getMainLooper());
+
+    public EstudianteRepositorio(Context contexto) {
+        dao = BaseDatos.getInstance(contexto).estudianteDao();
+    }
+
+    public void registrar(Estudiante estudiante, Resultado resultado) {
+        hilo.execute(() -> {
+            if (dao.contarPorCorreo(estudiante.getCorreo()) > 0) {
+                principal.post(() -> resultado.onError("Este correo ya esta registrado"));
+                return;
             }
-        }
-        return false;
+            try {
+                dao.insertar(estudiante);
+                principal.post(() -> resultado.onExito());
+            } catch (SQLiteConstraintException e) {
+                principal.post(() -> resultado.onError("Este correo ya esta registrado"));
+            }
+        });
     }
 
-    public void guardar(Estudiante estudiante) {
-        estudiante.setId(lista.size() + 1);
-        lista.add(estudiante);
+    public void obtenerTodos(Listado listado) {
+        hilo.execute(() -> {
+            List<Estudiante> datos = dao.obtenerTodos();
+            principal.post(() -> listado.onListo(datos));
+        });
     }
 
-    public List<Estudiante> obtenerTodos() {
-        return lista;
+    public void iniciarSesion(String correo, String password, Sesion sesion) {
+        hilo.execute(() -> {
+            Estudiante estudiante = dao.buscarPorCredenciales(correo, password);
+            if (estudiante == null) {
+                principal.post(() -> sesion.onNoEncontrado());
+            } else {
+                principal.post(() -> sesion.onEncontrado(estudiante));
+            }
+        });
     }
 }
-

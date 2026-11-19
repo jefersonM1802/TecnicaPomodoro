@@ -1,7 +1,13 @@
 package com.example.tecnicapomodoro.model;
 
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "asignatura")
 public class Asignatura {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String nombre;
     private String color;

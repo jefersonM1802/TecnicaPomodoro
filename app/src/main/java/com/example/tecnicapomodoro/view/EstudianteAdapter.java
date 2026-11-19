@@ -14,10 +14,16 @@ import com.example.tecnicapomodoro.model.Estudiante;
 import java.util.List;
 
 public class EstudianteAdapter extends RecyclerView.Adapter<EstudianteAdapter.ViewHolder> {
-    private final List<Estudiante> estudiantes;
+
+    private List<Estudiante> estudiantes;
 
     public EstudianteAdapter(List<Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
+    }
+
+    public void setEstudiantes(List<Estudiante> nuevos) {
+        estudiantes = nuevos;
+        notifyDataSetChanged();
     }
 
     @NonNull
