@@ -29,14 +29,7 @@ public class Pomodoro {
         return p;
     }
 
-    public Pomodoro(int id, int tareaId, long inicio, long fin, int minutos, boolean manual) {
-        this.id = id;
-        this.tareaId = tareaId;
-        this.inicio = inicio;
-        this.fin = fin;
-        this.minutos = minutos;
-        this.manual = manual;
-    }
+
 
     public int getId() {
         return id;

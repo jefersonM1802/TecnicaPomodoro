@@ -20,14 +20,7 @@ public class Tarea {
     private String estado = "pendiente";
     private int minutosRegistrados;
 
-    public Tarea(int id, int asignaturaId, String titulo, int pomodorosEstimados, String estado, int minutosRegistrados) {
-        this.id = id;
-        this.asignaturaId = asignaturaId;
-        this.titulo = titulo;
-        this.pomodorosEstimados = pomodorosEstimados;
-        this.estado = estado;
-        this.minutosRegistrados = minutosRegistrados;
-    }
+
 
     public int getId() {
         return id;
@@ -86,7 +79,7 @@ public class Tarea {
         estado = "completada";
     }
 
-    private int tiempoTotal() {
+    public int tiempoTotal() {
         return minutosRegistrados;
     }
 }

@@ -24,6 +24,10 @@
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.PantallaPrincipalActivity" />
         <activity android:name=".controller.AsignaturaActivity" />
+        <activity android:name=".controller.TareaActivity" />
+        <activity android:name=".controller.TemporizadorActivity" />
+        <activity android:name=".controller.ConfiguracionActivity" />
+        <activity android:name=".controller.SesionActivity" />
     </application>
 
 </manifest>

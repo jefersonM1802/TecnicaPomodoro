@@ -18,7 +18,7 @@ public class Objetivo {
     private int asignaturaId;
     private int metaSemanalMin;
 
-    private double calcularCumplimiento(int minutos) {
+    public double calcularCumplimiento(int minutos) {
         if (metaSemanalMin <= 0) return 0;
         return minutos * 100.0 / metaSemanalMin;
     }
@@ -27,11 +27,7 @@ public class Objetivo {
         metaSemanalMin = nuevaMeta;
     }
 
-    public Objetivo(int id, int asignaturaId, int metaSemanalMin) {
-        this.id = id;
-        this.asignaturaId = asignaturaId;
-        this.metaSemanalMin = metaSemanalMin;
-    }
+
 
     public int getId() {
         return id;

@@ -1,15 +1,14 @@
 package com.example.tecnicapomodoro.model;
 
-
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "asignatura"),
-    foreignKeys = @ForeignKey(entity = Estudiante.class, parentColumns = "id", childColumns = "estudianteId", onDelete = ForeignKey.CASCADE),
-    indices = @Index("estudianteId"))
-
+@Entity(tableName = "asignatura",
+        foreignKeys = @ForeignKey(entity = Estudiante.class, parentColumns = "id",
+                childColumns = "estudianteId", onDelete = ForeignKey.CASCADE),
+        indices = @Index("estudianteId"))
 public class Asignatura {
 
     @PrimaryKey(autoGenerate = true)
@@ -17,14 +16,8 @@ public class Asignatura {
     private int estudianteId;
     private String nombre;
     private String tipo;
-
     private String color;
-
-    public Asignatura(int id, String nombre, String color) {
-        this.id = id;
-        this.nombre = nombre;
-        this.color = color;
-    }
+    private boolean archivada;
 
     public int getId() {
         return id;
@@ -32,6 +25,14 @@ public class Asignatura {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getEstudianteId() {
+        return estudianteId;
+    }
+
+    public void setEstudianteId(int estudianteId) {
+        this.estudianteId = estudianteId;
     }
 
     public String getNombre() {
@@ -42,6 +43,14 @@ public class Asignatura {
         this.nombre = nombre;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getColor() {
         return color;
     }
@@ -49,8 +58,17 @@ public class Asignatura {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public boolean isArchivada() {
+        return archivada;
+    }
+
+    public void setArchivada(boolean archivada) {
+        this.archivada = archivada;
+    }
+
     public void asignarObjetivo(Objetivo objetivo) {
-        objetivo.asignaturaId = id;
+        objetivo.setAsignaturaId(id);
     }
 
     public void archivar() {

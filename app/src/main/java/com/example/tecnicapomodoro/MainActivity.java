@@ -17,6 +17,7 @@ import com.example.tecnicapomodoro.controller.PantallaPrincipalActivity;
 import com.example.tecnicapomodoro.controller.RegisterActivity;
 import com.example.tecnicapomodoro.model.Estudiante;
 import com.example.tecnicapomodoro.model.EstudianteRepositorio;
+import com.example.tecnicapomodoro.model.SesionUsuario;
 
 public class MainActivity extends AppCompatActivity {
     TextView tvregistrate;
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SesionUsuario.id(this) != -1) {
+            startActivity(new Intent(this, PantallaPrincipalActivity.class));
+            finish();
+            return;
+        }
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         repositorio.iniciarSesion(correo, password, new EstudianteRepositorio.Sesion() {
             @Override
             public void onEncontrado(Estudiante estudiante) {
+                SesionUsuario.guardar(MainActivity.this, estudiante.getId(), estudiante.getNombre());
                 Intent intent = new Intent(MainActivity.this, PantallaPrincipalActivity.class);
                 intent.putExtra(PantallaPrincipalActivity.EXTRA_NOMBRE, estudiante.getNombre());
                 startActivity(intent);

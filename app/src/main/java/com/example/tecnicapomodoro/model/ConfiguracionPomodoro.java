@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
         foreignKeys = @ForeignKey(entity = Estudiante.class, parentColumns = "id",
                 childColumns = "estudianteId", onDelete = ForeignKey.CASCADE))
 public class ConfiguracionPomodoro {
+
     @PrimaryKey
     private int estudianteId;
     private int minTrabajo = 25;
@@ -28,21 +29,13 @@ public class ConfiguracionPomodoro {
         pomodorosPorCiclo = porCiclo;
     }
 
-    private int obtenerMinTrabajo() {
+    public int obtenerMinTrabajo() {
         return minTrabajo;
     }
 
-    private int obtenerDescanso(int nroPomodoro) {
+    public int obtenerDescanso(int nroPomodoro) {
         if (nroPomodoro > 0 && nroPomodoro % pomodorosPorCiclo == 0) return minDescansoLargo;
         return minDescansoCorto;
-    }
-
-    public ConfiguracionPomodoro(int estudianteId, int minTrabajo, int minDescanso, int minDescansoLargo, int pomodorosPorCiclo) {
-        this.estudianteId = estudianteId;
-        this.minTrabajo = minTrabajo;
-        this.minDescansoCorto = minDescanso;
-        this.minDescansoLargo = minDescansoLargo;
-        this.pomodorosPorCiclo = pomodorosPorCiclo;
     }
 
     public int getEstudianteId() {
@@ -65,8 +58,8 @@ public class ConfiguracionPomodoro {
         return minDescansoCorto;
     }
 
-    public void setMinDescansoCorto(int minDescanso) {
-        this.minDescansoCorto = minDescanso;
+    public void setMinDescansoCorto(int minDescansoCorto) {
+        this.minDescansoCorto = minDescansoCorto;
     }
 
     public int getMinDescansoLargo() {
