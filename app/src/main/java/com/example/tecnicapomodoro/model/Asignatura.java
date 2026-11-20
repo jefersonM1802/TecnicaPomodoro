@@ -17,7 +17,6 @@ public class Asignatura {
     private String nombre;
     private String tipo;
     private String color;
-    private boolean archivada;
 
     public int getId() {
         return id;
@@ -59,23 +58,7 @@ public class Asignatura {
         this.color = color;
     }
 
-    public boolean isArchivada() {
-        return archivada;
-    }
-
-    public void setArchivada(boolean archivada) {
-        this.archivada = archivada;
-    }
-
     public void asignarObjetivo(Objetivo objetivo) {
         objetivo.setAsignaturaId(id);
-    }
-
-    public void archivar() {
-        archivada = true;
-    }
-
-    public void desarchivar() {
-        archivada = false;
     }
 }

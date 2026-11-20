@@ -28,7 +28,7 @@ public interface TareaDao {
     Tarea buscar(int id);
 
     @Query("SELECT t.* FROM tarea t INNER JOIN asignatura a ON a.id = t.asignaturaId " +
-            "WHERE a.estudianteId = :estudianteId AND a.archivada = 0 AND t.estado != 'completada' " +
+            "WHERE a.estudianteId = :estudianteId AND t.estado != 'completada' " +
             "ORDER BY t.titulo")
     List<Tarea> listarPendientesDe(int estudianteId);
 }

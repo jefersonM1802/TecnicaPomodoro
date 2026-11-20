@@ -14,7 +14,7 @@ import androidx.room.RoomDatabase;
         Pomodoro.class,
         SesionEstudio.class,
         ConfiguracionPomodoro.class
-}, version = 2, exportSchema = false)
+}, version = 3, exportSchema = false)
 public abstract class BaseDatos extends RoomDatabase {
 
     private static BaseDatos instancia;

@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             public void onEncontrado(Estudiante estudiante) {
                 SesionUsuario.guardar(MainActivity.this, estudiante.getId(), estudiante.getNombre());
                 Intent intent = new Intent(MainActivity.this, PantallaPrincipalActivity.class);
-                intent.putExtra(PantallaPrincipalActivity.EXTRA_NOMBRE, estudiante.getNombre());
                 startActivity(intent);
                 finish();
             }

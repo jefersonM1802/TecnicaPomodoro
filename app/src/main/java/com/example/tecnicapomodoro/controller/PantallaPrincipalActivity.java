@@ -7,11 +7,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tecnicapomodoro.MainActivity;
 import com.example.tecnicapomodoro.R;
+import com.example.tecnicapomodoro.model.SesionUsuario;
 
 public class PantallaPrincipalActivity extends AppCompatActivity {
-
-    public static final String EXTRA_NOMBRE = "extra_nombre";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +22,13 @@ public class PantallaPrincipalActivity extends AppCompatActivity {
         Button btnAsignaturas = findViewById(R.id.btnIrAsignaturas);
         Button btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
-        String nombre = getIntent().getStringExtra(EXTRA_NOMBRE);
-        tvBienvenida.setText("Bienvenido, " + nombre);
+        tvBienvenida.setText("Bienvenido, " + SesionUsuario.nombre(this));
 
         btnAsignaturas.setOnClickListener(v -> startActivity(new Intent(this, AsignaturaActivity.class)));
-        btnCerrarSesion.setOnClickListener(v -> finish());
+        btnCerrarSesion.setOnClickListener(v -> {
+            SesionUsuario.cerrar(this);
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
     }
 }

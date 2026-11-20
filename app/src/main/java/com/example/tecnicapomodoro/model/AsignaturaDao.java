@@ -20,8 +20,8 @@ public interface AsignaturaDao {
     @Delete
     void eliminar(Asignatura asignatura);
 
-    @Query("SELECT * FROM asignatura WHERE estudianteId = :estudianteId AND archivada = :archivadas ORDER BY nombre")
-    List<Asignatura> listar(int estudianteId, boolean archivadas);
+    @Query("SELECT * FROM asignatura WHERE estudianteId = :estudianteId ORDER BY nombre")
+    List<Asignatura> listar(int estudianteId);
 
     @Query("SELECT COUNT(*) FROM asignatura WHERE estudianteId = :estudianteId " +
             "AND LOWER(nombre) = LOWER(:nombre) AND id != :idExcluir")
