@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <EditText
+        android:id="@+id/etTituloTarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título de la tarea"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etPomodorosEstimados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pomodoros estimados (1 a 20)"
+        android:inputType="number" />
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/opAsignaturas"
+        android:title="Asignaturas y tareas"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/opSesiones"
+        android:title="Sesiones"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/opConfiguracion"
+        android:title="Configurar Pomodoro"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/opCerrarSesion"
+        android:title="Cerrar sesión"
+        app:showAsAction="never" />
+</menu>
